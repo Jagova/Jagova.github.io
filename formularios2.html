@@ -9,8 +9,8 @@
 <body>
     
     <h2>Formularios (Parte 2)</h2>
-    <form action="https://www.w3schools.com/action_page.php"
-    method="GET">
+    <form action="https://www.tecweb-acominf.c9users.io/envio.php"
+    method="POST">
         <fieldset>
             <legend>Datos Personales</legend>
             Nombre: <input type="text" name="nombreUsuario"/><br/><br/>
@@ -20,7 +20,9 @@
         <fieldset>
             <legend>Preferencias</legend>
             Sistema Operativo <br/>
-            <input type="checkbox" name="so"> Windows <input type="checkbox" name="so"> Linux <input type="checkbox" name="so"> OSX <br/> <br/>
+            <input type="checkbox" name="so" value="win"> Windows 
+            <input type="checkbox" name="so" value="lin"> Linux 
+            <input type="checkbox" name="so" value="iox"> OSX <br/> <br/>
             Telefono <br/>
             <input type="radio" name="tel" value="android"> Android <input type="radio" name="tel" value="ios"> IOS
         </fieldset> <br/>
