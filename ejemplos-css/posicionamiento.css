@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+body{
+    background-color: pink;
+}
+
 #relativo{
     position: relative;
     top:20px;
@@ -11,4 +15,16 @@
 
 #absolute{
     position: absolute;
+}
+
+#fixed{
+    position: fixed;
+    z-index: 10;
+    top:100px;
+    background: red;
+}
+
+#contenedor{
+    background: white;
+    margin:20px;
 }
