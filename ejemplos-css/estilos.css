@@ -1,8 +1,24 @@
 body{
-    background-color: pink;
+    background-color: #e0e4cc;
+    margin: auto;
+    width: 900px;
 }
 
 *{
     margin:0px;
+}
+
+main{
+    background-color: #a7dbdb;
+    padding-top: 40px;
+}
+
+h1{
+    
+    background-color: #69d2e7;
+    position: fixed;
+    z-index: 1;
+    width: 900px;
+    padding-right: 10px;
 }
 
