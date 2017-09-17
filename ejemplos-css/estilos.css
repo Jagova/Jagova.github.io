@@ -19,6 +19,10 @@ h1{
     position: fixed;
     z-index: 1;
     width: 900px;
-    padding-right: 10px;
 }
 
+footer{
+    background-color: #69d2e7;
+    
+    text-align: center
+}
