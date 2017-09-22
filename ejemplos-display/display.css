@@ -1,0 +1,16 @@
+a:hover {
+   
+    background-color: #5D707F;
+}
+
+a{
+    padding:18px;
+    background-color: #66CED6;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+a:visited{
+    /*color: #B89E97;*/
+}
