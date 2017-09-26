@@ -7,3 +7,26 @@
     width: 100%;
     background-color:  red;
 }
+
+@media print{
+    .contenedor{
+        color: blue;
+        font-size: 20px;
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .contenedor{
+        background-color: pink;
+    }
+
+}
+
+
+@media screen and (max-width: 600px){
+    .contenedor{
+        background-color: yellow;
+    }
+
+}
