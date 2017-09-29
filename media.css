@@ -1,12 +1,51 @@
+body{
+    text-align: center;
+}
+
+.movil, .tablet, .desktop, .smarttv  {
+    visibility: hidden;
+    display: none;
+}
+
+h2{
+  /*  font-size: 50px;*/
+}
+
+.contenedor{
+    max-width: 1200px;
+    background-color: white;
+    margin: auto;
+}
+
+p{
+    border: solid .0625rem black;
+    padding: 1.25rem;
+}
+
 @media screen and (max-width:400px){
     body{
         background-color: red;
+    }
+    .movil{
+        visibility: visible;
+        display: block;
+    }
+    .html{
+        font-size: 80%; 
     }
 }
 
 @media screen and (min-width:400px) and (max-width:800px){
     body{
         background-color: blue;
+    }
+    .tablet{
+        visibility: visible;
+        display: block;
+    }
+
+    .html{
+        font-size: 90%;
     }
 }
 
@@ -15,10 +54,26 @@
     body{
         background-color: pink;
     }
+    .desktop{
+        visibility: visible;
+        display: block;
+    }
+
+    html{
+        font-size: 150%;
+    }
 }
 
 @media screen and (min-width:1600px){
     body{
         background-color: purple;
+    }
+    .smarttv{
+        visibility: visible;
+        display: block;
+    }
+
+    html{
+        font-size: 200%;
     }
 }
