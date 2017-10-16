@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Registro</title>
+</head>
+
+<body>
+    <div id="contenedor">
+        <h1>Registro de usuario</h1>
+        <form action="" id="registro" method="GET">
+            <label>
+                    Nombre de usuario: 
+                    <input type="text" name="user" id="user">
+                </label>
+            <label>
+                    Contraseña
+                    <input type="text" name="pwd" id="pwd">
+                </label>
+            <label>
+                    Repetir contraseña
+                    <input type="text" name="rpwd" id="rpwd">
+                </label>
+            <label>
+                <input type="checkbox" name="terminos" id="termino"> Acepto <a href="#">terminos y condiciones</a>
+                </label>
+            <input type="submit" value="Registrar" id="btnRegistrar">
+                <div id="mensaje">
+                </div>
+        </form>
+    </div>
+    <script src="registro.js"></script>
+</body>
+
+</html>
