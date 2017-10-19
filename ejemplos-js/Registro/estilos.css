@@ -6,3 +6,15 @@ label{
 #calculadora{
     margin: 1rem;
 }
+
+.nivel-debil{
+    color: red;
+}
+
+.nivel-medio{
+    color: orange;
+}
+
+.nivel-seguro{
+    color: green;
+}

@@ -1,11 +1,37 @@
 var formulario = document.getElementById('registro');
 var mensaje = document.getElementById('mensaje');
+var nivel = document.getElementById('nivelPwd');
+
+formulario.pwd.addEventListener('keyup', function(){
+    var letras = (/[a-z]/i).test(formulario.pwd.value);
+    var numeros = (/[0-9]/i).test(formulario.pwd.value);
+    var simbolos = (/[!"#$%&/()]/).test(formulario.pwd.value);
+
+    if(letras && numeros && simbolos)
+        {
+            retro.innerHTML = 'Segura<br>';
+            retro.className = 'nivel-seguro';
+        }
+    else if(letras && numeros)
+    {
+        retro.innerHTML = 'Mediana<br>';
+        retro.className = 'nivel-medio';
+    }
+    else if(letras)
+    {
+        retro.innerHTML = 'Debil<br>';
+        retro.className = 'debil';
+    }
+});
+
+
 
 formulario.addEventListener('submit', function(evento){
     if(!verificaNombre() || !verificaContraseña() || !verificaTerminos())
         evento.preventDefault();
     else
         {  
+            evento.preventDefault();
             mensaje.innerHTML = 'Tu registro fue realizado con éxito';
         }
 });
@@ -30,9 +56,6 @@ function verificaNombre()
 
 function verificaContraseña()
 {
-    var letras = /[a-z]/i;
-    var numeros = /[0-9]/i;
-
     if(formulario.pwd.value.length<8)
         {
             mensaje.innerHTML = 'La contraseña debe contener al menos 8 caracteres';
@@ -49,9 +72,9 @@ function verificaContraseña()
 
 function verificaTerminos()
 {
-    if(formulario.terminos.value == false)
+    if(formulario.terminos.checked != true)
     {
-        mesanje.innerHTML = 'Debes aceptar los terminos y condiciones';
+        mensaje.innerHTML = 'Debes aceptar los terminos y condiciones';
         return false;
     }
     return true;
