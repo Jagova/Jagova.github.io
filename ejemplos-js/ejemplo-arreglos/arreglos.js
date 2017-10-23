@@ -6,6 +6,7 @@ var materias = [
 
 muestraMaterias();
 
+
 function muestraMaterias(){
     var tabla = document.createElement('table');
     tabla.appendChild(creaEncabezado());
@@ -26,7 +27,7 @@ function muestraMaterias(){
 
         tabla.appendChild(creaFila(mat));
     });
-
+    
     document.body.appendChild(tabla);
 }
 
