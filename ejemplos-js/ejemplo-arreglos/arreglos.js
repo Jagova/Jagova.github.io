@@ -10,7 +10,32 @@ muestraMaterias();
 function muestraMaterias(){
     var tabla = document.createElement('table');
     tabla.appendChild(creaEncabezado());
+    tabla.setAttribute('id','tabla');
+
+    var acomoda = document.getElementById('encabezado');
     
+  /*  acomoda.addEventListener('click', function (evento) {
+        var seleccion = evento.target;
+        var nombre = document.getElementById('nombre');
+        var creditos = document.getElementById('credritos');
+        var optativa = document.getElementById('optativa');
+        if (seleccion == nombre) {
+            materias.sort(compara);
+            limpia();
+        }
+        else if(seleccion == creditos){
+                materias.sort(function (m1, m2) {
+                    return m1.creditos - m2.creditos;
+                });
+                limpia();}
+         else if(seleccion == optativa) {
+                    materias.sort(function (m1, m2) {
+                        return m1.optativa - m2.optativa;
+                    });
+                    limpia();              
+            }
+        });
+    */
 
     console.log('forNormal');
     for(var i=0; i<materias.length;i++){
@@ -33,20 +58,24 @@ function muestraMaterias(){
 
 function creaEncabezado(){
     var encabezado = document.createElement('tr');
+    encabezado.setAttribute('id','encabezado');
 
     var nombre = document.createElement('th');
     var textNombre = document.createTextNode('Nombre');
     nombre.appendChild(textNombre);
+    nombre.setAttribute('id','nombre');
 
     
     var creditos = document.createElement('th');
     var textCreditos = document.createTextNode('Creditos');
     creditos.appendChild(textCreditos);
+    creditos.setAttribute('id','creditos');
 
     
     var optativa = document.createElement('th');
     var textOptativa = document.createTextNode('Optativa');
     optativa.appendChild(textOptativa);
+    optativa.setAttribute('id','optativa');
 
     encabezado.appendChild(nombre);
     encabezado.appendChild(creditos);
@@ -76,4 +105,10 @@ function creaFila(mat)
     reglon.appendChild(optativa);
 
     return reglon;
+}
+
+function compara(materia1, materia2) {
+    if (materia1.nombre === materia2.nombre) return 0;
+    else if (materia1.nombre < materia2.nombre) return -1;
+    else return 1;
 }
