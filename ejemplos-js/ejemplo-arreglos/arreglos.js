@@ -1,23 +1,45 @@
 var materias = [ 
     {nombre: 'Tecnologias Web', creditos: 8, optativa: true},
     {nombre: 'Pensamiento Computacional', creditos: 10, optativa: false},
-    {nombre: 'Compiladores A', creditos: 10, optativa: false}
+    {nombre: 'Compiladores A', creditos: 10, optativa: false},
+    {nombre: 'Graficacion A', creditos: 8, optativa: false},
+    {nombre: 'Humanidades B', creditos: 3, optativa: true},
+    {nombre: 'Sistemas Operativos B', creditos: 10, optativa: false}
 ];
 
-muestraMaterias();
+var materiasFiltro = [];
+var busqueda = false;
 
+var tabla = document.createElement('table');
+var buscarBtn = document.getElementById('buscar');
+var buscador = document.getElementById('buscador')
+var limpiarBtn = document.getElementById('limpiar');
 
-function muestraMaterias(){
-    var tabla = document.createElement('table');
+muestraMaterias(materias);
+
+buscarBtn.addEventListener('click', function(){
+    materiasFiltro = buscarFiltro(materias, buscador.value );
+
+    busqueda = true;
+    limpia();
+    console.log(materiasFiltro);
+});
+
+limpiarBtn.addEventListener('click',function(){
+    busqueda = false;
+    buscador.value = '';
+    limpia();
+});
+
+function muestraMaterias(materias){
+    
     tabla.appendChild(creaEncabezado());
     tabla.setAttribute('id','tabla');
-
-    var acomoda = document.getElementById('encabezado');
     
-  /*  acomoda.addEventListener('click', function (evento) {
+    tabla.addEventListener('click', function (evento) {
         var seleccion = evento.target;
         var nombre = document.getElementById('nombre');
-        var creditos = document.getElementById('credritos');
+        var creditos = document.getElementById('creditos');
         var optativa = document.getElementById('optativa');
         if (seleccion == nombre) {
             materias.sort(compara);
@@ -27,15 +49,17 @@ function muestraMaterias(){
                 materias.sort(function (m1, m2) {
                     return m1.creditos - m2.creditos;
                 });
-                limpia();}
+                limpia();
+                }
          else if(seleccion == optativa) {
                     materias.sort(function (m1, m2) {
                         return m1.optativa - m2.optativa;
-                    });
-                    limpia();              
+                    });  
+                limpia();               
             }
+
         });
-    */
+    
 
     console.log('forNormal');
     for(var i=0; i<materias.length;i++){
@@ -43,6 +67,7 @@ function muestraMaterias(){
         console.log('Creditos: ' + materias[i].creditos );
         console.log('Optativa: ' + materias[i].optativa );
     }
+
 
     console.log('forEach');
     materias.forEach(function(mat){
@@ -52,8 +77,8 @@ function muestraMaterias(){
 
         tabla.appendChild(creaFila(mat));
     });
+        document.body.appendChild(tabla);
     
-    document.body.appendChild(tabla);
 }
 
 function creaEncabezado(){
@@ -111,4 +136,24 @@ function compara(materia1, materia2) {
     if (materia1.nombre === materia2.nombre) return 0;
     else if (materia1.nombre < materia2.nombre) return -1;
     else return 1;
+}
+
+function limpia(){
+    while(tabla.firstChild)
+        tabla.removeChild(tabla.firstChild);
+
+    if(busqueda == false)
+        muestraMaterias(materias);
+    else
+        muestraMaterias(materiasFiltro);
+    
+    
+}
+
+function buscarFiltro(materias, palabra){
+    console.log(nombre);
+
+    return materias.filter(function (mat){
+        return mat.nombre.toLowerCase().includes(palabra.toLowerCase());
+    });
 }
