@@ -1,60 +1,103 @@
-var materias = [ 
+var materiasOriginal = [ 
     {nombre: 'Tecnologias Web', creditos: 8, optativa: true},
     {nombre: 'Pensamiento Computacional', creditos: 10, optativa: false},
     {nombre: 'Compiladores A', creditos: 10, optativa: false},
     {nombre: 'Graficacion A', creditos: 8, optativa: false},
     {nombre: 'Humanidades B', creditos: 3, optativa: true},
-    {nombre: 'Sistemas Operativos B', creditos: 10, optativa: false}
+    {nombre: 'Sistemas Operativos B', creditos: 10, optativa: false},
+    {nombre: 'Ingles 5', creditos: 0, optativa: false},
+    {nombre: 'Arquitectura B', creditos: 8, optativa: false},
+    {nombre: 'Control por Computadora', creditos: 12, optativa: false},
+    {nombre: 'Compiladores B', creditos: 10, optativa: true},
+    {nombre: 'Programacion de Sistemas', creditos: 12, optativa: true},
+    {nombre: 'Programacion Visual', creditos: 10, optativo: true}
 ];
 
-var materiasFiltro = [];
-var busqueda = false;
+var materias = materiasOriginal;
+var orden = 0;
+
+var materiasFiltro = materias;
+
 
 var tabla = document.createElement('table');
 var buscarBtn = document.getElementById('buscar');
 var buscador = document.getElementById('buscador')
 var limpiarBtn = document.getElementById('limpiar');
 
-muestraMaterias(materias);
+muestraMaterias();
+
+buscador.addEventListener('keyup',function(){
+    materiasFiltro = buscarFiltro(materias, buscador.value );
+    materias = materiasFiltro;
+        
+        limpia();
+        console.log(materiasFiltro);
+    
+    materias = materiasOriginal;
+})
 
 buscarBtn.addEventListener('click', function(){
     materiasFiltro = buscarFiltro(materias, buscador.value );
+    materias = materiasFiltro;
 
-    busqueda = true;
     limpia();
     console.log(materiasFiltro);
+
+    materias = materiasOriginal;
 });
 
 limpiarBtn.addEventListener('click',function(){
-    busqueda = false;
     buscador.value = '';
     limpia();
 });
 
-function muestraMaterias(materias){
+function muestraMaterias(){
     
     tabla.appendChild(creaEncabezado());
     tabla.setAttribute('id','tabla');
     
     tabla.addEventListener('click', function (evento) {
+        materias = materiasFiltro;
         var seleccion = evento.target;
         var nombre = document.getElementById('nombre');
         var creditos = document.getElementById('creditos');
         var optativa = document.getElementById('optativa');
         if (seleccion == nombre) {
             materias.sort(compara);
+            if(orden == 1)
+            {
+                orden = 0;
+                materias = materias.reverse();
+            }
+            else
+                orden = 1;
             limpia();
         }
         else if(seleccion == creditos){
                 materias.sort(function (m1, m2) {
                     return m1.creditos - m2.creditos;
+                    
                 });
+                if(orden == 2)
+                {
+                    orden = 0;
+                    materias = materias.reverse();
+                }
+                else
+                    orden = 2;
                 limpia();
                 }
          else if(seleccion == optativa) {
                     materias.sort(function (m1, m2) {
                         return m1.optativa - m2.optativa;
                     });  
+                    if(orden == 3)
+                    {
+                        orden = 0;
+                        materias = materias.reverse();
+                    }
+                    else
+                        orden = 3;
                 limpia();               
             }
 
@@ -142,11 +185,7 @@ function limpia(){
     while(tabla.firstChild)
         tabla.removeChild(tabla.firstChild);
 
-    if(busqueda == false)
-        muestraMaterias(materias);
-    else
-        muestraMaterias(materiasFiltro);
-    
+    muestraMaterias();
     
 }
 
