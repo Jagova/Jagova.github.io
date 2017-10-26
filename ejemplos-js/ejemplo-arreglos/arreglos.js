@@ -20,104 +20,68 @@ var materiasFiltro = materias;
 
 
 var tabla = document.createElement('table');
-var buscarBtn = document.getElementById('buscar');
+tabla.setAttribute('id','tabla');
 var buscador = document.getElementById('buscador')
-var limpiarBtn = document.getElementById('limpiar');
 
 muestraMaterias();
 
-buscador.addEventListener('keyup',function(){
-    materiasFiltro = buscarFiltro(materias, buscador.value );
+tabla.addEventListener('click', function (evento) {
     materias = materiasFiltro;
-        
+    var seleccion = evento.target;
+    var nombre = document.getElementById('nombre');
+    var creditos = document.getElementById('creditos');
+    var optativa = document.getElementById('optativa');
+    if (seleccion == nombre) {
+        materias.sort(compara);
+        if(orden == 1)
+        {
+            orden = 0;
+            materias = materias.reverse();
+        }
+        else
+            orden = 1;
         limpia();
-        console.log(materiasFiltro);
-    
-    materias = materiasOriginal;
-})
-
-buscarBtn.addEventListener('click', function(){
-    materiasFiltro = buscarFiltro(materias, buscador.value );
-    materias = materiasFiltro;
-
-    limpia();
-    console.log(materiasFiltro);
-
-    materias = materiasOriginal;
-});
-
-limpiarBtn.addEventListener('click',function(){
-    buscador.value = '';
-    limpia();
-});
-
-function muestraMaterias(){
-    
-    tabla.appendChild(creaEncabezado());
-    tabla.setAttribute('id','tabla');
-    
-    tabla.addEventListener('click', function (evento) {
-        materias = materiasFiltro;
-        var seleccion = evento.target;
-        var nombre = document.getElementById('nombre');
-        var creditos = document.getElementById('creditos');
-        var optativa = document.getElementById('optativa');
-        if (seleccion == nombre) {
-            materias.sort(compara);
-            if(orden == 1)
+    }
+    else if(seleccion == creditos){
+            materias.sort(function (m1, m2) {
+                return m1.creditos - m2.creditos;         
+            });
+            if(orden == 2)
             {
                 orden = 0;
                 materias = materias.reverse();
             }
             else
-                orden = 1;
+                orden = 2;
             limpia();
-        }
-        else if(seleccion == creditos){
+            }
+     else if(seleccion == optativa) {
                 materias.sort(function (m1, m2) {
-                    return m1.creditos - m2.creditos;
-                    
-                });
-                if(orden == 2)
+                    return m1.optativa - m2.optativa;
+                });  
+                if(orden == 3)
                 {
                     orden = 0;
                     materias = materias.reverse();
                 }
                 else
-                    orden = 2;
-                limpia();
-                }
-         else if(seleccion == optativa) {
-                    materias.sort(function (m1, m2) {
-                        return m1.optativa - m2.optativa;
-                    });  
-                    if(orden == 3)
-                    {
-                        orden = 0;
-                        materias = materias.reverse();
-                    }
-                    else
-                        orden = 3;
-                limpia();               
-            }
+                    orden = 3;
+            limpia();               
+        }
+    });
 
-        });
-    
+buscador.addEventListener('keyup',function(){
+    materiasFiltro = buscarFiltro(materias, buscador.value );
+    materias = materiasFiltro;     
+        limpia();
+        console.log(materiasFiltro);
+    materias = materiasOriginal;
+})
 
-    console.log('forNormal');
-    for(var i=0; i<materias.length;i++){
-        console.log('Nombre: ' + materias[i].nombre );
-        console.log('Creditos: ' + materias[i].creditos );
-        console.log('Optativa: ' + materias[i].optativa );
-    }
+function muestraMaterias(){    
+    tabla.appendChild(creaEncabezado());
 
-
-    console.log('forEach');
     materias.forEach(function(mat){
-        console.log('Nombre: ' + mat.nombre );
-        console.log('Creditos: ' + mat.creditos );
-        console.log('Optativa: ' + mat.optativa ? 'Si' : 'No' );
-
         tabla.appendChild(creaFila(mat));
     });
         document.body.appendChild(tabla);
